@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package transform;
+
+message LoginReq {
+    string email = 1;
+    string password = 2;
+}
+
+message RegisterReq {
+    string username = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message UserInfoReq {
+    int64 uid = 1;
+}
+
+message LoginResp {
+    int64 uid = 1;
+    string username = 2;
+    string email = 3;
+}
+
+message RegisterResp {
+    int64 uid = 1;
+    string username = 2;
+    string email = 3;
+}
+
+message UserInfoResp {
+    int64 uid = 1;
+    string username = 2;
+    string email = 3;
+}
+
+service transformer {
+    rpc login(LoginReq) returns (LoginResp);
+    rpc register(RegisterReq) returns (RegisterResp);
+    rpc getUser(UserInfoReq) returns (UserInfoResp);
+}

@@ -1,0 +1,58 @@
+syntax = "v1"
+
+type (
+	RegisterReq {
+		Username string `json:"username"`
+		Email    string `json:"email"`
+		Password string `json:"password"`
+	}
+
+	LoginReq {
+		Email    string `json:"email"`
+		Password string `json:"password"`
+	}
+
+	UserInfoReq {
+	}
+)
+
+type (
+	LoginResp {
+		Username     string `json:"username"`
+		Email        string `json:"email"`
+		AccessToken  string `json:"token"`
+		AccessExpire int64  `json:"access_expire"`
+		RefreshAfter int64 `json:"refresh_after"`
+	}
+
+	RegisterResp {
+	}
+
+	UserInfoResp {
+		Uid      int64  `json:"uid"`
+		Username string `json:"username"`
+		Email    string `json:"email"`
+	}
+)
+
+service user-api {
+	@doc "register"
+	@handler register
+	post /register (RegisterReq) returns (RegisterResp)
+	
+	@doc "login"
+	@handler login
+	post /login (LoginReq) returns (LoginResp)
+}
+
+@server(
+	jwt: Auth
+	group: user
+	middleware: AuthMiddleware
+)
+
+service user-api {
+	@doc "uesrInfo"
+	@handler userInfo
+	get /api/user-info (UserInfoReq) returns (UserInfoResp)
+}

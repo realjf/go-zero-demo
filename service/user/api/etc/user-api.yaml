@@ -1,0 +1,11 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 8888
+Auth:
+  AccessSecret: 874d4177-9673-4277-8bff-177fcd8f516e
+  AccessExpire: 3600
+Transform:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: transform.rpc
