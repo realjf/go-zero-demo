@@ -32,7 +32,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Route{
 				{
 					Method:  http.MethodGet,
-					Path:    "/api/user-info",
+					Path:    "/user-info",
 					Handler: user.UserInfoHandler(serverCtx),
 				},
 			}...,

@@ -49,10 +49,11 @@ service user-api {
 	jwt: Auth
 	group: user
 	middleware: AuthMiddleware
+	prefix: /api
 )
 
 service user-api {
 	@doc "uesrInfo"
 	@handler userInfo
-	get /api/user-info (UserInfoReq) returns (UserInfoResp)
+	get /user-info (UserInfoReq) returns (UserInfoResp)
 }
